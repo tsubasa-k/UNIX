@@ -1,0 +1,10 @@
+#!/bin
+cd $*
+ls | xargs -l fgrep ../allcards -e | cut --complement -c 1-2
+ls | grep -o S | wc -w 2>> temple1
+ls | grep -o D | wc -w 2>> temple1
+ls | grep -o H | wc -w 2>> temple1
+ls | grep -o C | wc -w 2>> temple1
+echo "Flush!" > temple2
+fgrep -w 5 temple1 | xargs -l paste temple2 | cut -f2 -d$'\t'
+rm temple*
